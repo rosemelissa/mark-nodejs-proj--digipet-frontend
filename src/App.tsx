@@ -14,7 +14,7 @@ function App() {
   const [digipetStats, setDigipetStats] = useState<Digipet>();
 
   const baseUrl = process.env.NODE_ENV === "production"
-	? "https://rosemelissa-digipet.herokuapp.com/"
+	? "https://rosemelissa-digipet.herokuapp.com"
 	: "http://localhost:4000"
 
   const loadDataFromEndpoint = async (endpoint: `/${string}`) => {
