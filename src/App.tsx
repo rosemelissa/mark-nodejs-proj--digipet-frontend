@@ -10,7 +10,7 @@ export interface Digipet {
 
 function App() {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [message, setMessage] = useState<string>();
+  const [description, setDescription] = useState<string>();
   const [digipetStats, setDigipetStats] = useState<Digipet>();
 
   const loadDataFromEndpoint = async (endpoint: `/${string}`) => {
@@ -19,11 +19,11 @@ function App() {
     try {
       const res = await fetch(`http://localhost:4000${endpoint}`);
       const body = await res.json();
-      setMessage(body.message);
+      setDescription(body.description);
       setDigipetStats(body.digipet);
     } catch (err) {
       console.log(err);
-      setMessage(`${err.name}: ${err.message}`);
+      setDescription(`${err.name}: ${err.description}`);
     }
   };
 
@@ -41,7 +41,7 @@ function App() {
     <main>
       <h1>Digipet</h1>
       {isFirstLoad && <p>Loading...</p>}
-      {message && <p>{message}</p>}
+      {description && <p>{description}</p>}
       <hr />
       <DigipetData digipet={digipetStats} />
       <hr />
@@ -57,6 +57,14 @@ function App() {
           },
           { name: "Feed",
             handler: () => loadDataFromEndpoint("/digipet/feed"),
+          },
+          {
+            name: "Train",
+            handler: () => loadDataFromEndpoint("/digipet/train"),
+          },
+          {
+            name: "Ignore",
+            handler: () => loadDataFromEndpoint("/digipet/ignore"),
           },
           {
             name: "Rehome",
