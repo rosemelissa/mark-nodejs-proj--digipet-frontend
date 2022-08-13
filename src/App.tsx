@@ -13,11 +13,15 @@ function App() {
   const [description, setDescription] = useState<string>();
   const [digipetStats, setDigipetStats] = useState<Digipet>();
 
+  const baseUrl = process.env.NODE_ENV === "production"
+	? "https://rosemelissa-digipet.herokuapp.com/"
+	: "http://localhost:4000"
+
   const loadDataFromEndpoint = async (endpoint: `/${string}`) => {
     // try... catch documentation:
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
     try {
-      const res = await fetch(`http://localhost:4000${endpoint}`);
+      const res = await fetch(`${baseUrl}${endpoint}`);
       const body = await res.json();
       setDescription(body.description);
       setDigipetStats(body.digipet);
