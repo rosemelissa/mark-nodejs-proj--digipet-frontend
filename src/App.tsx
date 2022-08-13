@@ -55,7 +55,13 @@ function App() {
             name: "Walk",
             handler: () => loadDataFromEndpoint("/digipet/walk"),
           },
-          { name: "Feed" },
+          { name: "Feed",
+            handler: () => loadDataFromEndpoint("/digipet/feed"),
+          },
+          {
+            name: "Rehome",
+            handler: () => loadDataFromEndpoint("/digipet/rehome"),
+          },
         ]}
       />
     </main>
